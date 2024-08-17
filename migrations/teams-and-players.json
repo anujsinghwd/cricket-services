@@ -1,0 +1,384 @@
+{
+  "teams": [
+    {
+      "name": "India",
+      "players": [
+        {
+          "name": "Virat Kohli",
+          "role": "Batsman",
+          "batting_style": "Right-handed",
+          "bowling_style": "Right-arm medium"
+        },
+        {
+          "name": "Rohit Sharma",
+          "role": "Batsman",
+          "batting_style": "Right-handed",
+          "bowling_style": "Right-arm offbreak"
+        },
+        {
+          "name": "Jasprit Bumrah",
+          "role": "Bowler",
+          "batting_style": "Right-handed",
+          "bowling_style": "Right-arm fast"
+        },
+        {
+          "name": "KL Rahul",
+          "role": "Wicketkeeper-Batsman",
+          "batting_style": "Right-handed",
+          "bowling_style": "Right-arm medium"
+        },
+        {
+          "name": "Ravindra Jadeja",
+          "role": "All-rounder",
+          "batting_style": "Left-handed",
+          "bowling_style": "Left-arm orthodox"
+        },
+        {
+          "name": "Hardik Pandya",
+          "role": "All-rounder",
+          "batting_style": "Right-handed",
+          "bowling_style": "Right-arm fast-medium"
+        },
+        {
+          "name": "Shreyas Iyer",
+          "role": "Batsman",
+          "batting_style": "Right-handed",
+          "bowling_style": "Right-arm legbreak"
+        },
+        {
+          "name": "Rishabh Pant",
+          "role": "Wicketkeeper-Batsman",
+          "batting_style": "Left-handed",
+          "bowling_style": "Right-arm offbreak"
+        },
+        {
+          "name": "Mohammed Shami",
+          "role": "Bowler",
+          "batting_style": "Right-handed",
+          "bowling_style": "Right-arm fast-medium"
+        },
+        {
+          "name": "Bhuvneshwar Kumar",
+          "role": "Bowler",
+          "batting_style": "Right-handed",
+          "bowling_style": "Right-arm fast-medium"
+        },
+        {
+          "name": "Yuzvendra Chahal",
+          "role": "Bowler",
+          "batting_style": "Right-handed",
+          "bowling_style": "Legbreak googly"
+        },
+        {
+          "name": "Shardul Thakur",
+          "role": "Bowler",
+          "batting_style": "Right-handed",
+          "bowling_style": "Right-arm fast-medium"
+        },
+        {
+          "name": "Axar Patel",
+          "role": "All-rounder",
+          "batting_style": "Left-handed",
+          "bowling_style": "Left-arm orthodox"
+        },
+        {
+          "name": "Suryakumar Yadav",
+          "role": "Batsman",
+          "batting_style": "Right-handed",
+          "bowling_style": "Right-arm medium"
+        },
+        {
+          "name": "Ishan Kishan",
+          "role": "Wicketkeeper-Batsman",
+          "batting_style": "Left-handed",
+          "bowling_style": "Right-arm offbreak"
+        }
+      ]
+    },
+    {
+      "name": "Pakistan",
+      "players": [
+        {
+          "name": "Babar Azam",
+          "role": "Batsman",
+          "batting_style": "Right-handed",
+          "bowling_style": "Right-arm offbreak"
+        },
+        {
+          "name": "Shaheen Afridi",
+          "role": "Bowler",
+          "batting_style": "Left-handed",
+          "bowling_style": "Left-arm fast"
+        },
+        {
+          "name": "Shadab Khan",
+          "role": "All-rounder",
+          "batting_style": "Right-handed",
+          "bowling_style": "Legbreak"
+        },
+        {
+          "name": "Mohammad Rizwan",
+          "role": "Wicketkeeper-Batsman",
+          "batting_style": "Right-handed",
+          "bowling_style": "Right-arm medium"
+        },
+        {
+          "name": "Fakhar Zaman",
+          "role": "Batsman",
+          "batting_style": "Left-handed",
+          "bowling_style": "Slow left-arm orthodox"
+        },
+        {
+          "name": "Hasan Ali",
+          "role": "Bowler",
+          "batting_style": "Right-handed",
+          "bowling_style": "Right-arm fast-medium"
+        },
+        {
+          "name": "Imad Wasim",
+          "role": "All-rounder",
+          "batting_style": "Left-handed",
+          "bowling_style": "Slow left-arm orthodox"
+        },
+        {
+          "name": "Haris Rauf",
+          "role": "Bowler",
+          "batting_style": "Right-handed",
+          "bowling_style": "Right-arm fast"
+        },
+        {
+          "name": "Mohammad Nawaz",
+          "role": "All-rounder",
+          "batting_style": "Left-handed",
+          "bowling_style": "Slow left-arm orthodox"
+        },
+        {
+          "name": "Asif Ali",
+          "role": "Batsman",
+          "batting_style": "Right-handed",
+          "bowling_style": "Right-arm medium"
+        },
+        {
+          "name": "Sarfaraz Ahmed",
+          "role": "Wicketkeeper-Batsman",
+          "batting_style": "Right-handed",
+          "bowling_style": "Right-arm offbreak"
+        },
+        {
+          "name": "Usman Qadir",
+          "role": "Bowler",
+          "batting_style": "Right-handed",
+          "bowling_style": "Legbreak"
+        },
+        {
+          "name": "Iftikhar Ahmed",
+          "role": "All-rounder",
+          "batting_style": "Right-handed",
+          "bowling_style": "Right-arm offbreak"
+        },
+        {
+          "name": "Naseem Shah",
+          "role": "Bowler",
+          "batting_style": "Right-handed",
+          "bowling_style": "Right-arm fast"
+        },
+        {
+          "name": "Haider Ali",
+          "role": "Batsman",
+          "batting_style": "Right-handed",
+          "bowling_style": "Right-arm offbreak"
+        }
+      ]
+    },
+    {
+      "name": "Australia",
+      "players": [
+        {
+          "name": "David Warner",
+          "role": "Batsman",
+          "batting_style": "Left-handed",
+          "bowling_style": "Right-arm legbreak"
+        },
+        {
+          "name": "Pat Cummins",
+          "role": "Bowler",
+          "batting_style": "Right-handed",
+          "bowling_style": "Right-arm fast"
+        },
+        {
+          "name": "Glenn Maxwell",
+          "role": "All-rounder",
+          "batting_style": "Right-handed",
+          "bowling_style": "Right-arm offbreak"
+        },
+        {
+          "name": "Steve Smith",
+          "role": "Batsman",
+          "batting_style": "Right-handed",
+          "bowling_style": "Right-arm legbreak"
+        },
+        {
+          "name": "Mitchell Starc",
+          "role": "Bowler",
+          "batting_style": "Left-handed",
+          "bowling_style": "Left-arm fast"
+        },
+        {
+          "name": "Aaron Finch",
+          "role": "Batsman",
+          "batting_style": "Right-handed",
+          "bowling_style": "Slow left-arm orthodox"
+        },
+        {
+          "name": "Alex Carey",
+          "role": "Wicketkeeper-Batsman",
+          "batting_style": "Left-handed",
+          "bowling_style": "Right-arm medium"
+        },
+        {
+          "name": "Marcus Stoinis",
+          "role": "All-rounder",
+          "batting_style": "Right-handed",
+          "bowling_style": "Right-arm fast-medium"
+        },
+        {
+          "name": "Josh Hazlewood",
+          "role": "Bowler",
+          "batting_style": "Left-handed",
+          "bowling_style": "Right-arm fast"
+        },
+        {
+          "name": "Adam Zampa",
+          "role": "Bowler",
+          "batting_style": "Right-handed",
+          "bowling_style": "Legbreak googly"
+        },
+        {
+          "name": "Matthew Wade",
+          "role": "Wicketkeeper-Batsman",
+          "batting_style": "Left-handed",
+          "bowling_style": "Right-arm medium"
+        },
+        {
+          "name": "Marnus Labuschagne",
+          "role": "Batsman",
+          "batting_style": "Right-handed",
+          "bowling_style": "Right-arm legbreak"
+        },
+        {
+          "name": "Mitchell Marsh",
+          "role": "All-rounder",
+          "batting_style": "Right-handed",
+          "bowling_style": "Right-arm fast-medium"
+        },
+        {
+          "name": "Cameron Green",
+          "role": "All-rounder",
+          "batting_style": "Right-handed",
+          "bowling_style": "Right-arm fast-medium"
+        },
+        {
+          "name": "Ashton Agar",
+          "role": "All-rounder",
+          "batting_style": "Left-handed",
+          "bowling_style": "Slow left-arm orthodox"
+        }
+      ]
+    },
+    {
+      "name": "Sri Lanka",
+      "players": [
+        {
+          "name": "Angelo Mathews",
+          "role": "All-rounder",
+          "batting_style": "Right-handed",
+          "bowling_style": "Right-arm fast-medium"
+        },
+        {
+          "name": "Lasith Malinga",
+          "role": "Bowler",
+          "batting_style": "Right-handed",
+          "bowling_style": "Right-arm fast"
+        },
+        {
+          "name": "Kusal Perera",
+          "role": "Batsman",
+          "batting_style": "Left-handed",
+          "bowling_style": "Right-arm medium"
+        },
+        {
+          "name": "Dimuth Karunaratne",
+          "role": "Batsman",
+          "batting_style": "Left-handed",
+          "bowling_style": "Right-arm medium"
+        },
+        {
+          "name": "Dhananjaya de Silva",
+          "role": "All-rounder",
+          "batting_style": "Right-handed",
+          "bowling_style": "Right-arm offbreak"
+        },
+        {
+          "name": "Wanindu Hasaranga",
+          "role": "Bowler",
+          "batting_style": "Right-handed",
+          "bowling_style": "Legbreak googly"
+        },
+        {
+          "name": "Kusal Mendis",
+          "role": "Wicketkeeper-Batsman",
+          "batting_style": "Right-handed",
+          "bowling_style": "Right-arm offbreak"
+        },
+        {
+          "name": "Thisara Perera",
+          "role": "All-rounder",
+          "batting_style": "Left-handed",
+          "bowling_style": "Right-arm fast-medium"
+        },
+        {
+          "name": "Nuwan Pradeep",
+          "role": "Bowler",
+          "batting_style": "Right-handed",
+          "bowling_style": "Right-arm fast"
+        },
+        {
+          "name": "Suranga Lakmal",
+          "role": "Bowler",
+          "batting_style": "Right-handed",
+          "bowling_style": "Right-arm fast-medium"
+        },
+        {
+          "name": "Avishka Fernando",
+          "role": "Batsman",
+          "batting_style": "Right-handed",
+          "bowling_style": "Right-arm medium"
+        },
+        {
+          "name": "Lahiru Thirimanne",
+          "role": "Batsman",
+          "batting_style": "Left-handed",
+          "bowling_style": "Right-arm medium"
+        },
+        {
+          "name": "Dushmantha Chameera",
+          "role": "Bowler",
+          "batting_style": "Right-handed",
+          "bowling_style": "Right-arm fast"
+        },
+        {
+          "name": "Lahiru Kumara",
+          "role": "Bowler",
+          "batting_style": "Right-handed",
+          "bowling_style": "Right-arm fast"
+        },
+        {
+          "name": "Dasun Shanaka",
+          "role": "All-rounder",
+          "batting_style": "Right-handed",
+          "bowling_style": "Right-arm medium"
+        }
+      ]
+    }
+  ]
+}
