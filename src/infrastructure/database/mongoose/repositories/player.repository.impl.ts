@@ -79,4 +79,29 @@ export class PlayerRepository implements IPlayerRepository {
   async delete(id: string): Promise<void> {
     await this.playerModel.findByIdAndDelete(id).exec();
   }
+
+  // Method to fetch a player by ID
+  // async getPlayerById(playerId: string): Promise<Player> {
+  //   return this.playerModel.findById(playerId).exec();
+  // }
+
+  // Method to update bowler statistics
+  async updateBowlerStats(
+    playerId: string,
+    bowlerStats: Partial<Player>,
+  ): Promise<Player> {
+    return this.playerModel
+      .findByIdAndUpdate(playerId, { $set: bowlerStats }, { new: true })
+      .exec();
+  }
+
+  // Method to update batsman statistics
+  async updateBatsmanStats(
+    playerId: string,
+    batsmanStats: Partial<Player>,
+  ): Promise<Player> {
+    return this.playerModel
+      .findByIdAndUpdate(playerId, { $set: batsmanStats }, { new: true })
+      .exec();
+  }
 }

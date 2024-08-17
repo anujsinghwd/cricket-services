@@ -10,6 +10,7 @@ import {
 } from '@nestjs/common';
 import { MatchService } from '../../../application/services/match.service';
 import { CreateMatchDto } from '../dtos/create-match.dto';
+import { Ball } from 'src/domain/entities/ball.entity';
 
 @Controller('matches')
 export class MatchController {
@@ -41,5 +42,18 @@ export class MatchController {
   @Delete(':id')
   async delete(@Param('id') id: string) {
     return this.matchService.deleteMatch(id);
+  }
+
+  @Post('ball')
+  async addBall(@Body() ball: Ball): Promise<void> {
+    if (ball.isWide) {
+      await this.matchService.processWideBall(ball);
+    } else if (ball.isNoBall) {
+      await this.matchService.processNoBall(ball);
+    } else if (ball.isBye || ball.isLegBye) {
+      await this.matchService.processByeOrLegByeBall(ball);
+    } else {
+      await this.matchService.processRegularBall(ball);
+    }
   }
 }

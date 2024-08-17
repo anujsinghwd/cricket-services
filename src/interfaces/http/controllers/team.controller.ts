@@ -25,7 +25,15 @@ export class TeamController {
 
   @Get(':id')
   async findById(@Param('id') id: string) {
-    return this.teamService.getTeamById(id);
+    try {
+      const teams = await this.teamService.getTeamById(id);
+      return CommonResponse.success(teams);
+    } catch (error) {
+      throw new HttpException(
+        CommonResponse.failure('Failed to retrieve teams', error),
+        HttpStatus.INTERNAL_SERVER_ERROR,
+      );
+    }
   }
 
   @Get()
