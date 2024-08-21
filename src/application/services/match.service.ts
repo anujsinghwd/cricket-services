@@ -155,9 +155,10 @@ export class MatchService {
     const totalOvers = Math.floor(totalBalls / 6) + (totalBalls % 6) / 10;
     const currentRunRate = totalRuns / totalOvers;
 
-    const match = await this.matchRepository.getMatchById(matchId);
+    const match = await this.matchRepository.findById(matchId);
     if (match) {
-      await this.matchRepository.updateMatch(matchId, {
+      await this.matchRepository.update({
+        id: matchId,
         totalRuns,
         totalBalls,
         totalWickets,

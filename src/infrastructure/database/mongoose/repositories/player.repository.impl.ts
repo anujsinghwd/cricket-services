@@ -60,7 +60,7 @@ export class PlayerRepository implements IPlayerRepository {
     );
   }
 
-  async update(player: Player): Promise<Player> {
+  async update(player: Partial<Player>): Promise<Player> {
     const updatedPlayer = await this.playerModel
       .findByIdAndUpdate(player.id, player, { new: true })
       .exec();
@@ -80,19 +80,26 @@ export class PlayerRepository implements IPlayerRepository {
     await this.playerModel.findByIdAndDelete(id).exec();
   }
 
-  // Method to fetch a player by ID
-  // async getPlayerById(playerId: string): Promise<Player> {
-  //   return this.playerModel.findById(playerId).exec();
-  // }
-
   // Method to update bowler statistics
   async updateBowlerStats(
     playerId: string,
-    bowlerStats: Partial<Player>,
+    bowlerStats: Partial<Player | null>,
   ): Promise<Player> {
-    return this.playerModel
+    const player = await this.playerModel
       .findByIdAndUpdate(playerId, { $set: bowlerStats }, { new: true })
       .exec();
+    return player
+      ? new Player(
+          player.id,
+          player.name,
+          player.team,
+          player.runs,
+          player.ballsFaced,
+          player.wickets,
+          player.oversBowled,
+          player.economy,
+        )
+      : null;
   }
 
   // Method to update batsman statistics
@@ -100,8 +107,18 @@ export class PlayerRepository implements IPlayerRepository {
     playerId: string,
     batsmanStats: Partial<Player>,
   ): Promise<Player> {
-    return this.playerModel
+    const updatedPlayer = await this.playerModel
       .findByIdAndUpdate(playerId, { $set: batsmanStats }, { new: true })
       .exec();
+    return new Player(
+      updatedPlayer.id,
+      updatedPlayer.name,
+      updatedPlayer.team,
+      updatedPlayer.runs,
+      updatedPlayer.ballsFaced,
+      updatedPlayer.wickets,
+      updatedPlayer.oversBowled,
+      updatedPlayer.economy,
+    );
   }
 }

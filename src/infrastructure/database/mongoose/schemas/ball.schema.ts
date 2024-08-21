@@ -14,7 +14,10 @@ export interface IBallDocument extends Document {
   isNoBall: boolean;
   isLegBye: boolean;
   isBye: boolean;
-  isOverthrow: boolean; // Add this field
+  isOverthrow: boolean;
+  deliveryNumber: number;
+  updated_at: Date;
+  created_at: Date;
 }
 
 export const BallSchema = new Schema<IBallDocument>({
@@ -30,5 +33,8 @@ export const BallSchema = new Schema<IBallDocument>({
   isNoBall: { type: Boolean, default: false },
   isLegBye: { type: Boolean, default: false },
   isBye: { type: Boolean, default: false },
-  isOverthrow: { type: Boolean, default: false }, // Add this field
+  deliveryNumber: { type: Number, required: true },
+  isOverthrow: { type: Boolean, default: false },
+  updated_at: { type: Date, default: Date.now },
+  created_at: { type: Date, default: Date.now },
 });
