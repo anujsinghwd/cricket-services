@@ -1,5 +1,10 @@
 // src/domain/entities/player.entity.ts
 export class Player {
+  runsConceded: number;
+  wides: number;
+  noBalls: number;
+  balls: number;
+  strikeRate: number;
   constructor(
     public readonly id: string,
     public readonly name: string,

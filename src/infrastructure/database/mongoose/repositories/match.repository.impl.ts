@@ -69,7 +69,7 @@ export class MatchRepository implements IMatchRepository {
     );
   }
 
-  async update(match: Match): Promise<Match> {
+  async update(match: Partial<Match>): Promise<Match> {
     const updatedMatch = await this.matchModel
       .findByIdAndUpdate(match.id, match, { new: true })
       .exec();

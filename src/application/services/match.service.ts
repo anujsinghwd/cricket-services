@@ -1,10 +1,10 @@
 // src/application/services/match.service.ts
 
-import { Injectable } from '@nestjs/common';
+import { Injectable, Inject } from '@nestjs/common';
 import { IBallRepository } from '../../domain/repositories/ball.repository';
 import { IMatchRepository } from '../../domain/repositories/match.repository';
 import { IPlayerRepository } from '../../domain/repositories/player.repository';
-import { ITeamRepository } from '../../domain/repositories/team.repository';
+// import { ITeamRepository } from '../../domain/repositories/team.repository';
 import { Ball } from '../../domain/entities/ball.entity';
 import { CreateMatchDto } from 'src/interfaces/http/dtos/create-match.dto';
 import { Match } from 'src/domain/entities/match.entity';
@@ -12,105 +12,122 @@ import { Match } from 'src/domain/entities/match.entity';
 @Injectable()
 export class MatchService {
   constructor(
-    private readonly ballRepository: IBallRepository,
+    @Inject('IMatchRepository')
     private readonly matchRepository: IMatchRepository,
+    @Inject('IPlayerRepository')
     private readonly playerRepository: IPlayerRepository,
-    private readonly teamRepository: ITeamRepository,
+    @Inject('IBallRepository') private readonly ballRepository: IBallRepository,
   ) {}
 
   // Method to add a regular ball and update statistics
-  async processRegularBall(ball: Ball): Promise<void> {
+  async processRegularBall(ball: Ball & { team?: string }): Promise<void> {
     await this.ballRepository.addBall(ball);
-    await this.updateMatchStatistics(ball.matchId);
+    await this.updateMatchStatistics(ball.matchId, ball.team);
   }
 
   // Method to handle a wide ball
-  async processWideBall(ball: Ball): Promise<void> {
-    await this.ballRepository.addBall(ball);
+  // async processWideBall(
+  //   ball: Ball & { team?: 'teamA' | 'teamB' },
+  // ): Promise<void> {
+  //   // Add the ball event to the database
+  //   await this.ballRepository.addBall(ball);
 
-    const bowler = await this.playerRepository.findById(ball.bowlerId);
-    if (bowler) {
-      bowler.runsConceded += ball.runs + 1; // 1 run extra for wide
-      bowler.wides += ball.runs + 1;
-      await this.playerRepository.updateBowlerStats(ball.bowlerId, {
-        runsConceded: bowler.runsConceded,
-        wides: bowler.wides,
-      });
-    }
+  //   // Update bowler's stats
+  //   const bowler = await this.playerRepository.findById(ball.bowlerId);
+  //   if (bowler) {
+  //     bowler.runsConceded += ball.runs + 1; // 1 run extra for wide
+  //     bowler.wides += ball.runs + 1;
+  //     await this.playerRepository.updateBowlerStats(ball.bowlerId, {
+  //       runsConceded: bowler.runsConceded,
+  //       wides: bowler.wides,
+  //     });
+  //   }
 
-    const team = await this.teamRepository.getTeamByMatchId(ball.matchId);
-    if (team) {
-      team.totalRuns += ball.runs + 1;
-      await this.teamRepository.updateTeamStats(team.id, {
-        totalRuns: team.totalRuns,
-      });
-    }
+  //   // Update match stats (total runs and overs for the respective team)
+  //   const match = await this.matchRepository.findById(ball.matchId);
+  //   let scoreTeamA = 0;
+  //   let scoreTeamB = 0;
+  //   if (match) {
+  //     if (ball.team === 'teamA') {
+  //       scoreTeamA = match.scoreTeamA + ball.runs + 1; // 1 run extra for wide
+  //     } else if (ball.team === 'teamB') {
+  //       scoreTeamB = match.scoreTeamB + ball.runs + 1; // 1 run extra for wide
+  //     }
 
-    await this.updateMatchStatistics(ball.matchId);
-  }
+  //     // Update the match statistics in the database
+  //     await this.matchRepository.update({
+  //       id: ball.matchId,
+  //       scoreTeamA,
+  //       scoreTeamB,
+  //     });
+  //   }
+
+  //   // Optionally, update other match-level statistics
+  //   await this.updateMatchStatistics(ball.matchId, ball.team);
+  // }
 
   // Method to handle a no-ball
-  async processNoBall(ball: Ball): Promise<void> {
-    await this.ballRepository.addBall(ball);
+  // async processNoBall(ball: Ball & { team?: string }): Promise<void> {
+  //   await this.ballRepository.addBall(ball);
 
-    const bowler = await this.playerRepository.findById(ball.bowlerId);
-    if (bowler) {
-      bowler.runsConceded += ball.runs + 1; // 1 run extra for no-ball
-      bowler.noBalls += 1;
-      await this.playerRepository.updateBowlerStats(ball.bowlerId, {
-        runsConceded: bowler.runsConceded,
-        noBalls: bowler.noBalls,
-      });
-    }
+  //   const bowler = await this.playerRepository.findById(ball.bowlerId);
+  //   if (bowler) {
+  //     bowler.runsConceded += ball.runs + 1; // 1 run extra for no-ball
+  //     bowler.noBalls += 1;
+  //     await this.playerRepository.updateBowlerStats(ball.bowlerId, {
+  //       runsConceded: bowler.runsConceded,
+  //       noBalls: bowler.noBalls,
+  //     });
+  //   }
 
-    const batsman = await this.playerRepository.findById(ball.batsmanId);
-    if (batsman) {
-      batsman.runs += ball.runs;
-      batsman.balls += 1;
-      batsman.strikeRate = (batsman.runs / batsman.balls) * 100;
-      await this.playerRepository.updateBatsmanStats(ball.batsmanId, {
-        runs: batsman.runs,
-        balls: batsman.balls,
-        strikeRate: batsman.strikeRate,
-      });
-    }
+  //   const batsman: any = await this.playerRepository.findById(ball.batsmanId);
+  //   if (batsman) {
+  //     batsman.runs += ball.runs;
+  //     batsman.balls += 1;
+  //     batsman.strikeRate = (batsman.runs / batsman.balls) * 100;
+  //     await this.playerRepository.updateBatsmanStats(ball.batsmanId, {
+  //       runs: batsman.runs,
+  //       balls: batsman.balls,
+  //       strikeRate: batsman.strikeRate,
+  //     });
+  //   }
 
-    const team = await this.teamRepository.getTeamByMatchId(ball.matchId);
-    if (team) {
-      team.totalRuns += ball.runs + 1;
-      await this.teamRepository.updateTeamStats(team.id, {
-        totalRuns: team.totalRuns,
-      });
-    }
+  //   const team: any = await this.teamRepository.getTeamByMatchId(ball.matchId);
+  //   if (team) {
+  //     team.totalRuns += ball.runs + 1;
+  //     await this.teamRepository.updateTeamStats(team.id, {
+  //       totalRuns: team.totalRuns,
+  //     });
+  //   }
 
-    await this.updateMatchStatistics(ball.matchId);
-  }
+  //   await this.updateMatchStatistics(ball.matchId, ball.team);
+  // }
 
   // Method to handle a bye or leg-bye ball
-  async processByeOrLegByeBall(ball: Ball): Promise<void> {
-    await this.ballRepository.addBall(ball);
+  // async processByeOrLegByeBall(ball: Ball): Promise<void> {
+  //   await this.ballRepository.addBall(ball);
 
-    const bowler = await this.playerRepository.findById(ball.bowlerId);
-    if (bowler) {
-      bowler.runsConceded += ball.extras || 0;
-      await this.playerRepository.updateBowlerStats(ball.bowlerId, {
-        runsConceded: bowler.runsConceded,
-      });
-    }
+  //   const bowler = await this.playerRepository.findById(ball.bowlerId);
+  //   if (bowler) {
+  //     bowler.runsConceded += ball.extras || 0;
+  //     await this.playerRepository.updateBowlerStats(ball.bowlerId, {
+  //       runsConceded: bowler.runsConceded,
+  //     });
+  //   }
 
-    const team = await this.teamRepository.getTeamByMatchId(ball.matchId);
-    if (team) {
-      team.totalRuns += ball.extras || 0;
-      await this.teamRepository.updateTeamStats(team.id, {
-        totalRuns: team.totalRuns,
-      });
-    }
+  //   const team = await this.teamRepository.getTeamByMatchId(ball.matchId);
+  //   if (team) {
+  //     team.totalRuns += ball.extras || 0;
+  //     await this.teamRepository.updateTeamStats(team.id, {
+  //       totalRuns: team.totalRuns,
+  //     });
+  //   }
 
-    await this.updateMatchStatistics(ball.matchId);
-  }
+  //   await this.updateMatchStatistics(ball.matchId);
+  // }
 
   // Method to update match statistics after processing a ball
-  async updateMatchStatistics(matchId: string): Promise<void> {
+  async updateMatchStatistics(matchId: string, team: string): Promise<void> {
     const balls = await this.ballRepository.getBallsByMatchId(matchId);
 
     let totalRuns = 0;
@@ -153,17 +170,27 @@ export class MatchService {
     }
 
     const totalOvers = Math.floor(totalBalls / 6) + (totalBalls % 6) / 10;
-    const currentRunRate = totalRuns / totalOvers;
-
+    // const currentRunRate = totalRuns / totalOvers;
     const match = await this.matchRepository.findById(matchId);
+    const updateField: any = {};
     if (match) {
+      // const updateField =
+      //   team === 'teamA'
+      //     ? { scoreTeamA: totalRuns }
+      //     : { scoreTeamB: totalRuns };
+
+      if (team === 'teamA') {
+        updateField.scoreTeamA = totalRuns;
+        updateField.oversPlayedTeamA = totalOvers;
+        updateField.wicketsTeamA = totalWickets;
+      } else {
+        updateField.scoreTeamB = totalRuns;
+        updateField.oversPlayedTeamB = totalOvers;
+        updateField.wicketsTeamB = totalWickets;
+      }
       await this.matchRepository.update({
         id: matchId,
-        totalRuns,
-        totalBalls,
-        totalWickets,
-        totalOvers,
-        currentRunRate,
+        ...updateField,
       });
     }
 
@@ -173,7 +200,7 @@ export class MatchService {
 
       await this.playerRepository.updateBatsmanStats(batsmanId, {
         runs,
-        balls,
+        ballsFaced: balls,
         strikeRate,
       });
     }
@@ -186,7 +213,7 @@ export class MatchService {
         runsConceded,
         balls,
         wickets,
-        economyRate,
+        economy: economyRate,
       });
     }
   }

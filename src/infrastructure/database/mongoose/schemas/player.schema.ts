@@ -12,6 +12,11 @@ export interface IPlayerDocument extends Document {
   role: string;
   battingStyle: string;
   bowlingStyle: string;
+  strikeRate: number;
+  runsConceded: number;
+  wides: number;
+  noBalls: number;
+  balls: number;
 }
 
 export const PlayerSchema = new Schema<IPlayerDocument>({
@@ -25,4 +30,9 @@ export const PlayerSchema = new Schema<IPlayerDocument>({
   role: { type: String, required: true },
   battingStyle: { type: String },
   bowlingStyle: { type: String },
+  strikeRate: { type: Number },
+  runsConceded: { type: Number },
+  wides: { type: Number },
+  noBalls: { type: Number },
+  balls: { type: Number },
 });
