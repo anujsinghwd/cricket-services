@@ -50,7 +50,12 @@ export class MatchRepository implements IMatchRepository {
   }
 
   async findAll(): Promise<Match[]> {
-    const matches = await this.matchModel.find().exec();
+    // const matches = await this.matchModel.find().exec();
+    const matches = await this.matchModel
+      .find()
+      .populate('teamA', 'name') // Populate the teamA field and only select the name field
+      .populate('teamB', 'name') // Populate the teamB field and only select the name field
+      .exec();
     return matches.map(
       (match) =>
         new Match(

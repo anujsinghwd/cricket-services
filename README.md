@@ -1,73 +1,106 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# Cricket Match Tracking System
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+## Project Overview
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+This project is a Cricket Match Tracking System developed using NestJS, Mongoose, and TypeScript. The system is designed to manage cricket matches, track ball-by-ball events, and update player, team, and match statistics in real-time. The architecture follows Clean Architecture principles to ensure scalability, maintainability, and testability.
 
-## Description
+## Table of Contents
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+- [Project Overview](#project-overview)
+- [Architecture](#architecture)
+- [Setup and Installation](#setup-and-installation)
+- [Folder Structure](#folder-structure)
 
-## Installation
+## Architecture
 
-```bash
-$ npm install
+The project follows Clean Architecture principles, organizing the codebase into layers that separate concerns and ensure a clear dependency flow.
+
+### Layers
+
+1. **Domain**: 
+   - Contains business logic and entities. The core of the application, free of external dependencies.
+
+2. **Application**:
+   - Contains use cases, services, and business rules. This layer interacts with the domain layer to perform operations.
+
+3. **Infrastructure**:
+   - Handles database interactions, repositories, and external services. This layer is where Mongoose schemas and database-specific logic reside.
+
+4. **Interfaces**:
+   - Manages the interaction with the outside world through controllers and views. This layer handles HTTP requests and responses.
+
+### Key Components
+
+- **Entities**: Define the core objects and their behaviors in the domain.
+- **Repositories**: Provide a clean abstraction over data persistence.
+- **Services**: Implement the application's use cases and interact with repositories.
+- **Controllers**: Handle incoming HTTP requests and delegate operations to the services.
+
+## Setup and Installation
+
+### Prerequisites
+
+- Node.js (>= 14.x)
+- npm or Yarn
+- MongoDB
+
+### Installation
+
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/yourusername/cricket-match-tracking-system.git
+   cd cricket-match-tracking-system
+   ```
+
+2. **Install Dependencies**:
+   ```bash
+   git clone https://github.com/yourusername/cricket-match-tracking-system.git
+   cd cricket-match-tracking-system
+   ```
+
+2. **Environment Variables:**:
+
+   Create a .env file in the root directory and configure the following variables:
+
+   ```bash
+   MONGO_URI=URI
+   DATABASE=NAME
+   PORT=3002
+   ```
+
+
+## Folder Structure
+```
+src/
+│
+├── application/
+│   ├── services/
+│   └── dtos/
+│
+├── domain/
+│   ├── entities/
+│   └── repositories/
+│
+├── infrastructure/
+│   ├── database/
+│   │   ├── mongoose/
+│   │   │   ├── schemas/
+│   │   │   └── repositories/
+│   └── http/
+│
+├── interfaces/
+│   ├── http/
+│   │   └── controllers/
+│
+├── app.module.ts
+└── main.ts
 ```
 
-## Running the app
+## Explanation
 
-```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
-```
-
-## Test
-
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
-```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
+- **application/services:** Contains service classes that implement business logic.
+- **domain/entities:** Holds the core business entities (e.g., Match, Player, Team).
+- **domain/repositories:** Defines interfaces for the repository pattern.
+- **infrastructure/database/mongoose/schemas:** Mongoose schemas for data persistence.
+- **infrastructure/database/mongoose/repositories:** Implements repository interfaces using Mongoose.
+- **interfaces/http/controllers:** Handles incoming HTTP requests and routes them to the appropriate services.

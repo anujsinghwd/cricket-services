@@ -1,5 +1,6 @@
 // src/app.module.ts
 import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { PlayerService } from './application/services/player.service';
 import { MatchService } from './application/services/match.service';
@@ -22,9 +23,8 @@ import { Ball } from './domain/entities/ball.entity';
 
 @Module({
   imports: [
-    MongooseModule.forRoot(
-      'mongodb+srv://naturalslaao:f4LSZBwJNK55Yh3c@learn-mongo.j4erclh.mongodb.net/learn-mongo',
-    ),
+    ConfigModule.forRoot(),
+    MongooseModule.forRoot(`${process.env.MONGO_URI}/${process.env.DATABASE}`),
     MongooseModule.forFeature([
       { name: Player.name, schema: PlayerSchema },
       { name: Match.name, schema: MatchSchema },
