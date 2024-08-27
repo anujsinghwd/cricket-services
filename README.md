@@ -58,7 +58,7 @@ The project follows Clean Architecture principles, organizing the codebase into 
    cd cricket-match-tracking-system
    ```
 
-2. **Environment Variables:**:
+3. **Environment Variables:**:
 
    Create a .env file in the root directory and configure the following variables:
 
@@ -66,6 +66,14 @@ The project follows Clean Architecture principles, organizing the codebase into 
    MONGO_URI=URI
    DATABASE=NAME
    PORT=3002
+   ```
+
+4. **Migrate Team and players Data For Testing:**:
+
+*NOTE:* Database connection is required
+
+   ```bash
+   npm run migration
    ```
 
 
