@@ -1,4 +1,4 @@
-# Cricket Match Tracking System
+# Cricket Match Services
 
 ## Project Overview
 
@@ -48,14 +48,13 @@ The project follows Clean Architecture principles, organizing the codebase into 
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/yourusername/cricket-match-tracking-system.git
-   cd cricket-match-tracking-system
+   git clone https://github.com/yourusername/cricket-services.git
+   cd cricket-services
    ```
 
 2. **Install Dependencies**:
    ```bash
-   git clone https://github.com/yourusername/cricket-match-tracking-system.git
-   cd cricket-match-tracking-system
+   npm install
    ```
 
 3. **Environment Variables:**:
@@ -94,7 +93,6 @@ src/
 │   │   ├── mongoose/
 │   │   │   ├── schemas/
 │   │   │   └── repositories/
-│   └── http/
 │
 ├── interfaces/
 │   ├── http/
